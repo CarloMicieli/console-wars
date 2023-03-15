@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![GitHub last commit](https://img.shields.io/github/last-commit/CarloMicieli/console-wars)
 
+[![Micronaut JDBC CI](https://github.com/CarloMicieli/console-wars/actions/workflows/java-micronaut-jdbc-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/java-micronaut-jdbc-ci.yaml)
 [![Spring MVC CI](https://github.com/CarloMicieli/console-wars/actions/workflows/java-spring-mvc-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/java-spring-mvc-ci.yaml)
 [![Spring WebFlux CI](https://github.com/CarloMicieli/console-wars/actions/workflows/kotlin-spring-webflux-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/kotlin-spring-webflux-ci.yaml)
 
@@ -39,6 +40,7 @@ More information are available [here](_http/README.markdown)
 
 ### Build the docker images
 
+* `java-micronaut-jdbc`: `./gradlew java-micronaut-jdbc:dockerBuildNative`
 * `java-spring-mvc`: `./gradlew java-spring-mvc:bootBuildImage`
 * `kotlin-spring-webflux`: `./gradlew kotlin-spring-webflux:bootBuildImage`
 
@@ -46,6 +48,7 @@ More information are available [here](_http/README.markdown)
 
 |        Service	         | Port number |
 |:-----------------------:|:-----------:|
+|  `java-micronaut-jdbc`  |    8000     | 
 |    `java-spring-mvc`    |    8004     | 
 | `kotlin-spring-webflux` |    8006     | 
 
