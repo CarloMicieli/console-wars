@@ -18,25 +18,30 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package it.consolemania.games;
+package it.consolemania.games
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Size
+import java.time.Year
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Test;
-
-@DisplayName("Game URNs")
-@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class GameURNTest {
-    @Test
-    void it_should_generate_game_urns() {
-        var platform = "Neo Geo AES";
-        var gameTitle = "Fatal Fury 2";
-
-        var urn = GameURN.of(platform, gameTitle);
-
-        assertEquals("urn:game:neo-geo-aes:fatal-fury-2", urn.toString());
-    }
-}
+data class GameRequest(
+    @NotBlank
+    @Size(max = 100)
+    val title: String,
+    @NotNull val genres: List<Genre>,
+    @NotBlank
+    @Size(max = 100)
+    val platform: String,
+    @NotNull val modes: List<Mode>,
+    @Size(max = 100) val series: String?,
+    @NotBlank
+    @Size(max = 250)
+    val developer: String,
+    @NotBlank
+    @Size(max = 250)
+    val publisher: String,
+    val rating: Rating,
+    @Size(max = 2500) val plot: String?,
+    val year: Year
+)

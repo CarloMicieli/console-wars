@@ -4,6 +4,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/CarloMicieli/console-wars)
 
 [![Spring MVC CI](https://github.com/CarloMicieli/console-wars/actions/workflows/java-spring-mvc-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/java-spring-mvc-ci.yaml)
+[![Spring WebFlux CI](https://github.com/CarloMicieli/console-wars/actions/workflows/kotlin-spring-webflux-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/kotlin-spring-webflux-ci.yaml)
 
 Implementing the same web api using different back-end technologies.
 
@@ -39,12 +40,14 @@ More information are available [here](_http/README.markdown)
 ### Build the docker images
 
 * `java-spring-mvc`: `./gradlew java-spring-mvc:bootBuildImage`
+* `kotlin-spring-webflux`: `./gradlew kotlin-spring-webflux:bootBuildImage`
 
 ### The Services
 
-|         Service	          | Port number |
-|:-------------------------:|:--------:|
-|     `java-spring-mvc`     | 8004     | 
+|        Service	         | Port number |
+|:-----------------------:|:-----------:|
+|    `java-spring-mvc`    |    8004     | 
+| `kotlin-spring-webflux` |    8006     | 
 
 ## Conventional commits
 

@@ -18,25 +18,30 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package it.consolemania.games;
+package it.consolemania.platforms
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Positive
+import jakarta.validation.constraints.Size
+import java.math.BigDecimal
+import java.time.Year
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Test;
-
-@DisplayName("Game URNs")
-@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class GameURNTest {
-    @Test
-    void it_should_generate_game_urns() {
-        var platform = "Neo Geo AES";
-        var gameTitle = "Fatal Fury 2";
-
-        var urn = GameURN.of(platform, gameTitle);
-
-        assertEquals("urn:game:neo-geo-aes:fatal-fury-2", urn.toString());
-    }
-}
+data class PlatformRequest(
+    @NotBlank
+    @Size(max = 100)
+    val name: String,
+    @NotBlank
+    @Size(max = 100)
+    val manufacturer: String,
+    @Positive val generation: Int,
+    @NotNull val type: PlatformType,
+    @NotNull val year: Year,
+    val release: Release,
+    val discontinuedYear: Year?,
+    val discontinued: Boolean,
+    @Positive val introductoryPrice: BigDecimal?,
+    @Positive val unitsSold: Int?,
+    @NotNull val media: List<Media>,
+    val techSpecs: TechSpecs
+)

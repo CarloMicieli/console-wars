@@ -18,25 +18,13 @@
  *    specific language governing permissions and limitations
  *    under the License.
  */
-package it.consolemania.games;
+package it.consolemania
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test
+import org.springframework.boot.test.context.SpringBootTest
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Test;
-
-@DisplayName("Game URNs")
-@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class GameURNTest {
+@SpringBootTest
+class ApplicationTest {
     @Test
-    void it_should_generate_game_urns() {
-        var platform = "Neo Geo AES";
-        var gameTitle = "Fatal Fury 2";
-
-        var urn = GameURN.of(platform, gameTitle);
-
-        assertEquals("urn:game:neo-geo-aes:fatal-fury-2", urn.toString());
-    }
+    fun shouldStartCorrectly() {}
 }
