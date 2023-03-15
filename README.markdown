@@ -3,6 +3,8 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![GitHub last commit](https://img.shields.io/github/last-commit/CarloMicieli/console-wars)
 
+[![Spring MVC CI](https://github.com/CarloMicieli/console-wars/actions/workflows/java-spring-mvc-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/java-spring-mvc-ci.yaml)
+
 Implementing the same web api using different back-end technologies.
 
 ## Requirements
@@ -28,11 +30,21 @@ More information are available [here](_http/README.markdown)
   cd console-wars
 ```
 
-### Running a PostgreSQL Database
+### Running a Postgres Database
 
 ```bash
   docker compose up postgres
 ```  
+
+### Build the docker images
+
+* `java-spring-mvc`: `./gradlew java-spring-mvc:bootBuildImage`
+
+### The Services
+
+|         Service	          | Port number |
+|:-------------------------:|:--------:|
+|     `java-spring-mvc`     | 8004     | 
 
 ## Conventional commits
 

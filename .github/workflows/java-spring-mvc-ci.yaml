@@ -1,0 +1,59 @@
+name: Spring MVC CI
+on:
+  push:
+    paths:
+      - '.github/workflows/java-spring-mvc-ci.yaml'
+      - 'java-spring-mvc/**'
+      - 'shared-java-library/**'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Set up GraalVM Community Edition
+        uses: graalvm/setup-graalvm@v1
+        with:
+            version: 'latest'
+            java-version: '17'
+            components: 'native-image'
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print versions
+        run: |
+            echo "GRAALVM_HOME: $GRAALVM_HOME"
+            echo "JAVA_HOME: $JAVA_HOME"
+            java --version
+            gu --version
+            native-image --version
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Compile the project
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: java-spring-mvc:build -x check
+
+      - name: Checks that sourcecode satisfies formatting rules
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: java-spring-mvc:spotlessCheck
+
+      - name: Run the tests
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: java-shared-library:test java-spring-mvc:test java-spring-mvc:integrationTest
+
+      - uses: actions/upload-artifact@v3
+        with:
+            name: Build Artifacts
+            path: |
+                **/build/reports
