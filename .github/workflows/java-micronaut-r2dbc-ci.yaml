@@ -1,9 +1,9 @@
-name: Micronaut JDBC CI
+name: Micronaut R2DBC CI
 on:
   push:
     paths:
-      - '.github/workflows/java-micronaut-jdbc-ci.yaml'
-      - 'java-micronaut-jdbc/**'
+      - '.github/workflows/java-micronaut-r2dbc-ci.yaml'
+      - 'java-micronaut-r2dbc/**'
       - 'java-shared-library/**'
   pull_request:
   workflow_dispatch:
@@ -16,13 +16,11 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
-      - name: Set up GraalVM Community Edition
-        uses: graalvm/setup-graalvm@v1
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          version: 'latest'
+          distribution: 'temurin'
           java-version: '17'
-          components: 'native-image'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
@@ -33,17 +31,17 @@ jobs:
       - name: Compile the project
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: java-micronaut-jdbc:build -x check
+          arguments: java-micronaut-r2dbc:build -x check
 
       - name: Checks that sourcecode satisfies formatting rules
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: java-micronaut-jdbc:spotlessCheck
+          arguments: java-micronaut-r2dbc:spotlessCheck
 
       - name: Run the unit tests
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: java-shared-library:test java-micronaut-jdbc:test
+          arguments: java-shared-library:test java-micronaut-r2dbc:test
 
       - uses: actions/upload-artifact@v3
         with:

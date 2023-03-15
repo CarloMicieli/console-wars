@@ -4,7 +4,7 @@ on:
     paths:
       - '.github/workflows/kotlin-spring-webflux-ci.yaml'
       - 'kotlin-spring-webflux/**'
-      - 'shared-java-library/**'
+      - 'java-shared-library/**'
   pull_request:
   workflow_dispatch:
 

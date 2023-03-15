@@ -4,7 +4,7 @@ on:
     paths:
       - '.github/workflows/java-spring-mvc-ci.yaml'
       - 'java-spring-mvc/**'
-      - 'shared-java-library/**'
+      - 'java-shared-library/**'
   pull_request:
   workflow_dispatch:
 
