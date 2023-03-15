@@ -1,0 +1,55 @@
+###
+
+# Create a new game
+POST http://{{host}}:{{port}}/games
+Content-Type: application/json
+
+{
+    "title": "Fatal Fury 2",
+    "genres": [
+        "FIGHTING"
+    ],
+    "platform": "Neo Geo AES",
+    "modes": [
+        "SINGLE_PLAYER"
+    ],
+    "series": "Fatal fury",
+    "developer": "SNK",
+    "publisher": "SNK",
+    "plot": "The game plot goes here",
+    "rating": "ESRB_TEEN",
+    "year": 1994
+}
+
+###
+
+# Update a game
+PUT http://{{host}}:{{port}}/games/urn:game:neo-geo-aes:fatal-fury-2
+Content-Type: application/json
+
+{
+    "title": "Fatal Fury 2",
+    "genres": [
+        "FIGHTING"
+    ],
+    "platform": "Neo Geo AES",
+    "modes": [
+        "SINGLE_PLAYER",
+        "MULTIPLAYER"
+    ],
+    "series": "Fatal fury",
+    "developer": "SNK",
+    "publisher": "SNK",
+    "rating": "ESRB_TEEN",
+    "year": 1994
+}
+
+###
+
+# Get a game by id
+GET http://{{host}}:{{port}}/games/urn:game:neo-geo-aes:fatal-fury-2
+
+###
+
+# Delete a game by id
+DELETE http://{{host}}:{{port}}/games/urn:game:neo-geo-aes:fatal-fury-2
