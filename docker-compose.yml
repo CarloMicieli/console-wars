@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:14.7-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: gamesdb
+      POSTGRES_PASSWORD: mysecretpassword
+    volumes:
+      - .docker/init-db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ CMD-SHELL, 'pg_isready -U postgres' ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+        reservations:
+          cpus: '2'
+          memory: 1G
+    networks:
+      - backend
+
+networks:
+  backend:

@@ -10,7 +10,7 @@ Implementing the same web api using different back-end technologies.
 * Java 17 [sdkman.io/](https://sdkman.io/)
 * Rust [rustup.rs/](https://rustup.rs/)
 * Git
-* Docker
+* Docker (and Docker Compose)
 
 ## The REST API
 
@@ -25,6 +25,19 @@ Implementing the same web api using different back-end technologies.
 |      `/platforms`        |  `GET`   |            |  200   | `Platform[]` | Get all platforms in the catalog                      |
 |    `/platforms/{urn}`    |  `GET`   |            |  200   |  `Platform`  | Get the platform with the given `{urn}`               |
 | `/platforms/{urn}/games` |  `GET`   |            |  200   |   `Game[]`   | Get all games for the platform with the given `{urn}` |
+
+## How to run
+
+```bash
+  git clone https://github.com/CarloMicieli/console-wars.git
+  cd console-wars
+```
+
+### Running a PostgreSQL Database
+
+```bash
+  docker compose up postgres
+```  
 
 ## Conventional commits
 
