@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![GitHub last commit](https://img.shields.io/github/last-commit/CarloMicieli/console-wars)
 
+[![Actix Web CI](https://github.com/CarloMicieli/console-wars/actions/workflows/rust-actix-web-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/rust-actix-web-ci.yaml)
 [![Micronaut JDBC CI](https://github.com/CarloMicieli/console-wars/actions/workflows/java-micronaut-jdbc-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/java-micronaut-jdbc-ci.yaml)
 [![Micronaut R2DBC CI](https://github.com/CarloMicieli/console-wars/actions/workflows/java-micronaut-r2dbc-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/java-micronaut-r2dbc-ci.yaml)
 [![Spring MVC CI](https://github.com/CarloMicieli/console-wars/actions/workflows/java-spring-mvc-ci.yaml/badge.svg)](https://github.com/CarloMicieli/console-wars/actions/workflows/java-spring-mvc-ci.yaml)
@@ -53,7 +54,8 @@ More information are available [here](_http/README.markdown)
 |  `java-micronaut-jdbc`  |    8000     | 
 | `java-micronaut-r2dbc`  |    8002     |
 |    `java-spring-mvc`    |    8004     | 
-| `kotlin-spring-webflux` |    8006     | 
+| `kotlin-spring-webflux` |    8006     |
+|   `rust-actix-web`      |    8008     | 
 
 ## Conventional commits
 

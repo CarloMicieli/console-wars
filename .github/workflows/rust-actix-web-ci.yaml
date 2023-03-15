@@ -1,0 +1,68 @@
+name: Actix Web CI
+on:
+  push:
+    paths:
+      - '.github/workflows/rust-actix-web-ci.yaml'
+      - 'rust-actix-web/**'
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_MAKE_RUN_CODECOV: true
+  SQLX_OFFLINE: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Get current MSRV from Cargo.toml
+        id: get-msrv
+        run: echo "MSRV=$(cat ./Cargo.toml | grep rust-version | sed 's/.* = "//; s/"//')" >> $GITHUB_OUTPUT
+
+      - name: Get current rustc version
+        id: get-rustc-version
+        run: echo "RUSTC_VERSION=$(rustc --version | cut -c 7-10)" >> $GITHUB_OUTPUT
+
+      - name: Install rust toolchain
+        run: |
+          rustup set profile minimal
+          rustup toolchain install stable
+        if: ${{ steps.get-rustc-version.outputs.RUSTC_VERSION != steps.get-msrv.outputs.MSRV }}
+
+      - name: Install cargo make
+        run: cargo install cargo-make@0.36.5
+
+      - name: Set up cargo cache
+        uses: actions/cache@v3
+        continue-on-error: false
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry
+            ~/.cargo/git
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: Toolchain info
+        run: |
+          rustc --version
+          cargo --version --verbose
+          cargo make --version
+
+      - name: Run cargo check
+        run: cargo make check
+        working-directory: ./rust-actix-web
+
+      - name: Check formatting with rustfmt
+        run: cargo make fmt-check
+        working-directory: ./rust-actix-web
+
+      - name: Linting with Clippy
+        run: cargo make clippy
+        working-directory: ./rust-actix-web
