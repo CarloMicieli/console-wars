@@ -32,11 +32,12 @@ import io.micronaut.data.model.DataType;
 import io.micronaut.serde.annotation.Serdeable;
 import io.micronaut.serde.config.naming.SnakeCaseStrategy;
 import it.consolemania.config.URNAttributeConverter;
+import jakarta.persistence.Embedded;
+
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
-import javax.persistence.Embedded;
 import javax.validation.constraints.NotNull;
 
 @Serdeable(naming = SnakeCaseStrategy.class)

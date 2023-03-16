@@ -91,4 +91,4 @@ jobs:
 
       - name: Push the container image
         run: |
-          docker push carlomicieli/consolemania-micronaut-jdbc-native
+          docker push ghcr.io/carlomicieli/consolemania-micronaut-jdbc-native

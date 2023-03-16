@@ -12,7 +12,7 @@ env:
   CARGO_MAKE_RUN_CODECOV: true
   SQLX_OFFLINE: true
   REGISTRY: ghcr.io
-  IMAGE_NAME: consolemania-actix-web
+  IMAGE_NAME: carlomicieli/consolemania-actix-web
 
 jobs:
   build:
