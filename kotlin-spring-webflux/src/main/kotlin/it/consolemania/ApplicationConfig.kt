@@ -36,6 +36,10 @@ import it.consolemania.games.Games
 import it.consolemania.platforms.Platforms
 import it.consolemania.util.UuidSource
 import org.springframework.context.support.beans
+import org.springframework.web.server.ServerWebExchange
+import org.springframework.web.server.WebFilter
+import org.springframework.web.server.WebFilterChain
+import reactor.core.publisher.Mono
 import java.util.UUID
 
 object ApplicationConfig {
@@ -51,6 +55,7 @@ object ApplicationConfig {
 
 val commonBeans = beans {
     bean<RandomUuidSource>()
+    bean<AddHeaderWebFilter>()
     bean<ObjectMapper>() {
         ObjectMapper()
             .setSerializationInclusion(JsonInclude.Include.NON_NULL)
@@ -76,4 +81,14 @@ class URNSerializer(t: Class<URN>? = null) : StdSerializer<URN>(t) {
 
 object RandomUuidSource : UuidSource {
     override fun generateNewId(): UUID = UUID.randomUUID()
+}
+
+object AddHeaderWebFilter : WebFilter {
+    override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
+        exchange
+            .response
+            .headers
+            .add("X-Service-Name", "kotlin-spring-webflux")
+        return chain.filter(exchange)
+    }
 }

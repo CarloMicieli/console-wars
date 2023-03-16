@@ -3,7 +3,7 @@ use crate::games::handlers::configure_game_routes;
 use crate::platforms::handlers::configure_platform_routes;
 use actix_web::dev::Server;
 use actix_web::middleware::{Compress, Logger};
-use actix_web::{web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{middleware, web, App, HttpResponse, HttpServer, Responder};
 use std::net::TcpListener;
 
 /// Run the web server
@@ -13,6 +13,7 @@ pub fn run(listener: TcpListener, settings: &Settings) -> Result<Server, std::io
     #[rustfmt::skip]
     let server = HttpServer::new(move || {
         App::new()
+            .wrap(middleware::DefaultHeaders::new().add(("X-Service-Name", "rust-actix-web")))
             .wrap(Compress::default())
             .wrap(Logger::default())
             .route("/health-check", web::get().to(health_check))
