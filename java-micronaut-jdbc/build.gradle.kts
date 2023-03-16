@@ -24,6 +24,7 @@ dependencies {
     implementation("jakarta.persistence:jakarta.persistence-api:2.2.3")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("ch.qos.logback:logback-classic")
+    implementation("io.projectreactor:reactor-core")
     runtimeOnly("org.slf4j:log4j-over-slf4j")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("io.micronaut.test:micronaut-test-rest-assured")

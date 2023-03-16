@@ -108,6 +108,7 @@ io.netty:netty-transport:4.1.87.Final=compileClasspath
 io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:1.15.0-alpha=compileClasspath
 io.opentelemetry:opentelemetry-bom-alpha:1.15.0-alpha=compileClasspath
 io.opentelemetry:opentelemetry-bom:1.18.0=compileClasspath
+io.projectreactor:reactor-core:3.5.0=compileClasspath
 io.rest-assured:rest-assured-bom:5.3.0=compileClasspath
 io.soabase.record-builder:record-builder-core:35=compileClasspath
 io.soabase.record-builder:record-builder-processor:35=compileClasspath
