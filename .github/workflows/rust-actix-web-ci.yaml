@@ -12,6 +12,7 @@ env:
   CARGO_MAKE_RUN_CODECOV: true
   SQLX_OFFLINE: true
   REGISTRY: ghcr.io
+  IMAGE_NAME: consolemania-actix-web
 
 jobs:
   checks:
@@ -67,3 +68,38 @@ jobs:
       - name: Linting with Clippy
         run: cargo make clippy
         working-directory: ./rust-actix-web
+
+  docker:
+    runs-on: ubuntu-22.04
+    needs: build
+    if: github.ref_name == 'main'
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            # set latest tag for default branch
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            type=sha
+
+      - name: Build and push Docker image (server)
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: .docker/rust-actix-web.dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

@@ -62,7 +62,7 @@ jobs:
                 **/build/reports
 
 
-  docker:
+  docker-native:
     runs-on: ubuntu-22.04
     permissions:
       contents: read
@@ -95,7 +95,7 @@ jobs:
       - name: Build the container image
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: bootBuildImage
+          arguments: java-spring-mvc:bootBuildImage
 
       - name: Push the container image
         run: |

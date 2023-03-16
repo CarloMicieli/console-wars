@@ -80,7 +80,7 @@ jobs:
       - name: Build the container image
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: dockerBuild
+          arguments: java-micronaut-r2dbc:dockerBuild
 
       - name: Push the container image
         run: |

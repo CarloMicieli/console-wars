@@ -80,7 +80,7 @@ jobs:
       - name: Build the container image
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: bootBuildImage
+          arguments: kotlin-spring-webflux:bootBuildImage
 
       - name: Push the container image
         run: |
