@@ -16,8 +16,8 @@ r2dbc:
       dialect: POSTGRES
       options:
         protocol: postgres
-        initialSize: 48
-        maxSize: 48
+        initialSize: ${DB_MIN_POOL_SIZE:10}
+        maxSize: ${DB_MAX_POOL_SIZE:100}
 netty:
   default:
     allocator:

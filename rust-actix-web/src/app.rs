@@ -16,7 +16,7 @@ pub fn run(listener: TcpListener, settings: &Settings) -> Result<Server, std::io
             .wrap(middleware::DefaultHeaders::new().add(("X-Service-Name", "rust-actix-web")))
             .wrap(Compress::default())
             .wrap(Logger::default())
-            .route("/health-check", web::get().to(health_check))
+            .route("/health", web::get().to(health_check))
             .configure(config_services)
             .app_data(web::JsonConfig::default().limit(4096))
             .app_data(db_pool.clone())

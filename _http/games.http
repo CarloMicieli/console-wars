@@ -47,9 +47,9 @@ Content-Type: application/json
 ###
 
 # Get a game by id
-GET http://{{host}}:{{port}}/games/urn:game:neo-geo-aes:fatal-fury-2
+GET http://{{host}}:{{port}}/games/urn:game:snk-neo-geo-aes:fatal-fury-2
 
 ###
 
 # Delete a game by id
-DELETE http://{{host}}:{{port}}/games/urn:game:neo-geo-aes:fatal-fury-2
+DELETE http://{{host}}:{{port}}/games/urn:game:snk-neo-geo-aes:fatal-fury-2

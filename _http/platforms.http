@@ -36,17 +36,17 @@ GET http://{{host}}:{{port}}/platforms
 ###
 
 # Get a platform
-GET http://{{host}}:{{port}}/platforms/urn:platform:neo-geo-aes
+GET http://{{host}}:{{port}}/platforms/urn:platform:snk-neo-geo-aes
 
 ###
 
 # Get all games by platform
-GET http://{{host}}:{{port}}/platforms/urn:platform:neo-geo-aes/games
+GET http://{{host}}:{{port}}/platforms/urn:platform:snk-neo-geo-aes/games
 
 ###
 
 # Update a platform
-PUT http://{{host}}:{{port}}/platforms/urn:platform:neo-geo-aes
+PUT http://{{host}}:{{port}}/platforms/urn:platform:snk-neo-geo-aes
 Content-Type: application/json
 
 {
