@@ -7,7 +7,7 @@ plugins {
 
 dependencies {
     implementation(project(":java-shared-library"))
-    implementation("org.jetbrains:annotations:23.0.0")
+    implementation("org.jetbrains:annotations:23.1.0")
     annotationProcessor("io.micronaut:micronaut-graal")
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
     annotationProcessor("io.micronaut:micronaut-http-validation")
@@ -21,7 +21,7 @@ dependencies {
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     implementation("io.micronaut:micronaut-validation")
     implementation("jakarta.annotation:jakarta.annotation-api")
-    implementation("jakarta.persistence:jakarta.persistence-api:2.2.3")
+    implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.projectreactor:reactor-core")
@@ -65,4 +65,7 @@ tasks.named<DockerBuildImage>("dockerBuild") {
 tasks.named<DockerBuildImage>("dockerBuildNative") {
     images.add("ghcr.io/carlomicieli/consolemania-micronaut-jdbc-native:${project.version}")
     images.add("ghcr.io/carlomicieli/consolemania-micronaut-jdbc-native:latest")
+}
+repositories {
+    mavenCentral()
 }
