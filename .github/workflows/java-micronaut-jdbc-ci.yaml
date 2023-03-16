@@ -54,7 +54,7 @@ jobs:
           path: |
             **/build/reports
 
-  docker:
+  docker-native:
     runs-on: ubuntu-22.04
     permissions:
       contents: read
@@ -87,7 +87,7 @@ jobs:
       - name: Build the container image
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: dockerBuildNative
+          arguments: java-micronaut-jdbc:dockerBuildNative
 
       - name: Push the container image
         run: |

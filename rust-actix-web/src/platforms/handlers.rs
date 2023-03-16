@@ -2,6 +2,7 @@ use super::{
     database::{find_all_platform, find_platform_by_urn, update_platform},
     platform_request::PlatformRequest,
 };
+use crate::platforms::database::platform_exists;
 use crate::{
     games::database::find_all_games_by_platform, platforms::database::insert_platform,
     responders::ServerResponseError,
@@ -10,7 +11,6 @@ use actix_web::{web, HttpResponse};
 use anyhow::Context;
 use sqlx::PgPool;
 use urn::Urn;
-use crate::platforms::database::platform_exists;
 
 pub const PLATFORMS_ROOT_API: &str = "/platforms";
 
@@ -86,7 +86,9 @@ pub async fn post_platform(
 
     let exists = platform_exists(&new_platform.name, &mut transaction).await?;
     if exists {
-        return Err(ServerResponseError::AlreadyExists(new_platform.name.clone()));
+        return Err(ServerResponseError::AlreadyExists(
+            new_platform.name.clone(),
+        ));
     }
 
     let platform_urn: Urn = new_platform.try_into().unwrap();

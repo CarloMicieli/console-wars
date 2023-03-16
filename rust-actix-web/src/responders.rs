@@ -1,10 +1,10 @@
 use actix_web::{http::StatusCode, HttpResponse, HttpResponseBuilder, ResponseError};
 use log::error;
+use serde::Serialize;
 use thiserror::Error;
 use url::Url;
 use urn::{Urn, UrnBuilder};
 use uuid::Uuid;
-use serde::Serialize;
 
 #[derive(Debug, Error)]
 pub enum ServerResponseError {
@@ -36,14 +36,16 @@ impl ResponseError for ServerResponseError {
         error!("problem_id: {}, reason: {:?}", id, self);
 
         match self {
-            ServerResponseError::GenericError(why) =>
-                ProblemDetail::error(id, &why.to_string()).to_response(),
-            ServerResponseError::NotFound(why) =>
-                ProblemDetail::not_found(id, why).to_response(),
-            ServerResponseError::Conflict(why) =>
-                ProblemDetail::unprocessable_entity(id, why).to_response(),
-            ServerResponseError::AlreadyExists(why) =>
-                ProblemDetail::resource_already_exists(id, why).to_response(),
+            ServerResponseError::GenericError(why) => {
+                ProblemDetail::error(id, &why.to_string()).to_response()
+            }
+            ServerResponseError::NotFound(why) => ProblemDetail::not_found(id, why).to_response(),
+            ServerResponseError::Conflict(why) => {
+                ProblemDetail::unprocessable_entity(id, why).to_response()
+            }
+            ServerResponseError::AlreadyExists(why) => {
+                ProblemDetail::resource_already_exists(id, why).to_response()
+            }
         }
     }
 }
@@ -69,7 +71,9 @@ impl ProblemDetail {
             title: String::from("Error: Internal Server Error"),
             detail: error.to_owned(),
             status: StatusCode::INTERNAL_SERVER_ERROR.as_u16(),
-            instance: UrnBuilder::new("problem-detail", &id.to_string()).build().unwrap()
+            instance: UrnBuilder::new("problem-detail", &id.to_string())
+                .build()
+                .unwrap(),
         }
     }
 
@@ -81,7 +85,9 @@ impl ProblemDetail {
             title: String::from("Unprocessable entity"),
             detail: detail.to_owned(),
             status: StatusCode::UNPROCESSABLE_ENTITY.as_u16(),
-            instance: UrnBuilder::new("problem-detail", &id.to_string()).build().unwrap()
+            instance: UrnBuilder::new("problem-detail", &id.to_string())
+                .build()
+                .unwrap(),
         }
     }
 
@@ -93,7 +99,9 @@ impl ProblemDetail {
             title: String::from("Bad request"),
             detail: detail.to_owned(),
             status: StatusCode::BAD_REQUEST.as_u16(),
-            instance: UrnBuilder::new("problem-detail", &id.to_string()).build().unwrap()
+            instance: UrnBuilder::new("problem-detail", &id.to_string())
+                .build()
+                .unwrap(),
         }
     }
 
@@ -105,7 +113,9 @@ impl ProblemDetail {
             title: String::from("The resource already exists"),
             detail: detail.to_owned(),
             status: StatusCode::CONFLICT.as_u16(),
-            instance: UrnBuilder::new("problem-detail", &id.to_string()).build().unwrap()
+            instance: UrnBuilder::new("problem-detail", &id.to_string())
+                .build()
+                .unwrap(),
         }
     }
 
@@ -117,7 +127,9 @@ impl ProblemDetail {
             title: String::from("The resource was not found"),
             detail: detail.to_owned(),
             status: StatusCode::NOT_FOUND.as_u16(),
-            instance: UrnBuilder::new("problem-detail", &id.to_string()).build().unwrap()
+            instance: UrnBuilder::new("problem-detail", &id.to_string())
+                .build()
+                .unwrap(),
         }
     }
 
