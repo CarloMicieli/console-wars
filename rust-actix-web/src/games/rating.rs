@@ -10,17 +10,23 @@ use strum::{Display, EnumString};
 #[sqlx(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum Rating {
     #[serde(rename = "CERO_C_AGES_15_PLUS")]
+    #[strum(serialize = "CERO_C_AGES_15_PLUS")]
+    #[sqlx(rename = "CERO_C_AGES_15_PLUS")]
     CeroCAges15Plus,
     EsrbAdultsOnly,
     EsrbEarlyChildhood,
     EsrbEveryone,
     #[serde(rename = "ESRB_EVERYONE_10_PLUS")]
+    #[strum(serialize = "ESRB_EVERYONE_10_PLUS")]
+    #[sqlx(rename = "ESRB_EVERYONE_10_PLUS")]
     EsrbEveryone10Plus,
     EsrbKidsToAdults,
     EsrbMature,
     EsrbRatingPending,
     EsrbTeen,
     #[serde(rename = "HSRS_17_PLUS")]
+    #[strum(serialize = "HSRS_17_PLUS")]
+    #[sqlx(rename = "HSRS_17_PLUS")]
     Hsrs17Plus,
     HsrsAdult,
     HsrsParentalGuidance,
