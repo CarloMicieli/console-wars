@@ -33,7 +33,6 @@ import io.micronaut.serde.annotation.Serdeable;
 import io.micronaut.serde.config.naming.SnakeCaseStrategy;
 import it.consolemania.config.URNAttributeConverter;
 import jakarta.persistence.Embedded;
-
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
