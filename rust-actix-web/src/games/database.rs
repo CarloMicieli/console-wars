@@ -57,14 +57,13 @@ pub async fn game_exists<'db>(
     game_urn: &Urn,
     transaction: &mut Transaction<'db, Postgres>,
 ) -> Result<bool, anyhow::Error> {
-
     let result = sqlx::query!(
         r#"select game_id from games where game_urn = $1"#,
         &game_urn.to_string()
     )
-        .fetch_optional(transaction)
-        .await
-        .context("A database failure was encountered while trying to check the game existence.")?;
+    .fetch_optional(transaction)
+    .await
+    .context("A database failure was encountered while trying to check the game existence.")?;
 
     Ok(result.is_some())
 }

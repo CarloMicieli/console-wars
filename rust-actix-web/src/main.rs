@@ -1,9 +1,9 @@
 use chrono::Utc;
 use colored::Colorize;
+use log::info;
 use rust_actix_web::app;
 use rust_actix_web::configuration::Settings;
 use std::net::TcpListener;
-use log::info;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -19,10 +19,7 @@ async fn main() -> std::io::Result<()> {
         .map(|res| {
             let end_time = Utc::now().time();
             let diff = end_time - start_time;
-            info!(
-                "Starting the server {}...",
-                settings.address().bold()
-            );
+            info!("Starting the server {}...", settings.address().bold());
             info!("Total time taken to run is {} ms", diff.num_milliseconds());
             res
         })?
