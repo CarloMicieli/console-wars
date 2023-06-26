@@ -12,7 +12,7 @@ plugins {
     id("org.graalvm.buildtools.native")
 }
 
-extra["testcontainersVersion"] = "1.17.6"
+extra["testcontainersVersion"] = "1.18.3"
 dependencyManagement {
     imports {
         mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
@@ -41,7 +41,7 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.mockito:mockito-inline")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
 }
 
 java {

@@ -11,7 +11,7 @@ plugins {
     id("io.spring.dependency-management")
 }
 
-extra["testcontainersVersion"] = "1.17.6"
+extra["testcontainersVersion"] = "1.18.3"
 dependencyManagement {
     imports {
         mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
